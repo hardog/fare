@@ -1,0 +1,18 @@
+{
+  "name": "firelog",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "scripts": {},
+  "author": "hardog",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hardog/firelog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hardog/firelog/issues"
+  },
+  "homepage": "https://github.com/hardog/firelog",
+  "license": "MIT"
+}
