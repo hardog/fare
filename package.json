@@ -14,5 +14,8 @@
     "url": "https://github.com/hardog/firelog/issues"
   },
   "homepage": "https://github.com/hardog/firelog",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "string-to-stream": "^1.1.0"
+  }
 }
