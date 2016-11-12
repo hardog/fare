@@ -9,7 +9,8 @@ process.on('uncaughtException', (err) => {
 describe('#fire', function(){
     var server, f, cb;
     var opts = {
-        timeout: 10
+        timeout: 10,
+        terminal: 'off'
     };
 
     before(function(done){
