@@ -27,6 +27,16 @@ a simple log pkg, send log to elasticsearch
 - `stream(on|off)`, use stream pipe log
 
 
+# Benchmark
+
+enter benchmark dir, then execute `$node bunyan_vs_fire.js`
+
+```
+Fire Spend: 148148 op/s
+Bunyan Spend: 59382 op/s
+```
+
+
 # Install
 
 `$ npm install firelog -g`
