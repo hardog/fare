@@ -32,6 +32,7 @@
     "string-to-stream": "^1.1.0"
   },
   "devDependencies": {
+    "debug": "^2.3.2",
     "CBuffer": "^2.0.0",
     "bunyan": "^1.8.4",
     "chai": "^3.5.0",
