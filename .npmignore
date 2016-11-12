@@ -1,3 +1,7 @@
 benchmark/
 example/
 test/
+coverage/
+.eslintrc
+.gitignore
+.travis.yml
