@@ -29,6 +29,7 @@
   "homepage": "https://github.com/hardog/firelog",
   "license": "MIT",
   "dependencies": {
+    "configurable": "0.0.1",
     "string-to-stream": "^1.1.0"
   },
   "devDependencies": {
