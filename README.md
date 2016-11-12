@@ -24,7 +24,7 @@ a simple log pkg, send log to elasticsearch
 - `attach`, attach extra msg to log
 - `host`, target host
 - `port`, target port
-- `use_stream`, is use stream pipe log
+- `stream(on|off)`, use stream pipe log
 
 
 # Install
