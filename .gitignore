@@ -2,6 +2,7 @@
 logs
 *.log
 npm-debug.log*
+simpe.txt
 
 # Runtime data
 pids
@@ -13,6 +14,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+.DS_Store
 
 # nyc test coverage
 .nyc_output

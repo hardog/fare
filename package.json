@@ -1,11 +1,24 @@
 {
   "name": "firelog",
-  "version": "0.0.1",
-  "description": "",
-  "keywords": [],
-  "scripts": {},
+  "version": "1.0.1",
+  "description": "a simple log pkg, send log to elk",
+  "keywords": [
+    "elk",
+    "elasticsearch",
+    "logstash",
+    "log",
+    "firelog"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test/*.js",
+    "lint": "./node_modules/.bin/eslint lib/*.js",
+    "cover": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec test"
+  },
   "author": "hardog",
-  "main": "index.js",
+  "main": "./lib/log.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hardog/firelog.git"
@@ -17,5 +30,13 @@
   "license": "MIT",
   "dependencies": {
     "string-to-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "CBuffer": "^2.0.0",
+    "bunyan": "^1.8.4",
+    "chai": "^3.5.0",
+    "eslint": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2"
   }
 }
