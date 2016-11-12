@@ -15,9 +15,7 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 .DS_Store
-
-# nyc test coverage
-.nyc_output
+example/huge.txt
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt

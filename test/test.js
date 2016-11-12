@@ -34,6 +34,7 @@ describe('#fire', function(){
             done();
         };
         f.log('log: terminal off');
+        f.log('log: terminal off, %d age', 25);
     });
 
     it('should work when use warn', function(done){
