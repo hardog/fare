@@ -1,6 +1,6 @@
 {
   "name": "firelog",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a simple log pkg, send log to elk",
   "keywords": [
     "elk",
@@ -26,7 +26,7 @@
   "files": [
     "./lib/fire.js",
     "./lib/log.js",
-    "./lib/sock.js",
+    "./lib/sock.js"
   ],
   "bugs": {
     "url": "https://github.com/hardog/firelog/issues"
