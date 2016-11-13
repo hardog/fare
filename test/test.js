@@ -200,4 +200,19 @@ describe('#fire', function(){
             sock.emit('close');
         }, 10);
     });
+
+    it('should log queue when no sock', function(done){
+        opts.timeout = 1;
+        f = new Fire(opts);
+
+        var fire = f._fire();
+        setTimeout(function(){
+            fire.socks = [];
+            f.log('no sock available');
+            setTimeout(function(){
+                expect(fire.log_queue.length).to.be.equal(1);
+                done();
+            });
+        }, 10);
+    });
 });
