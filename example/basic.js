@@ -1,9 +1,7 @@
-var Fire = require('../lib/log');
+var Fire = require('../lib/fire');
 var f = new Fire({
     host: '192.168.40.36',
     port: 9998
 });
 
-f.log('hello, this is log');
-f.warn('hello, this is warn');
-f.error('hello, this is error');
+f.send('hello, this is a new day!');

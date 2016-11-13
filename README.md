@@ -11,17 +11,9 @@ a simple log pkg, send log to elasticsearch
 
 - stream support
 - data loss guard against
-- custom log level number
-- support `log、warn、error`
-
 
 # Options
 
-- `timeout(ms)`, time to flush log
-- `terminal(on|off)`, terminal show
-- `tag`, single log tag
-- `level`, for examples `{log: 1, warn: 2, error: 3}`
-- `attach`, attach extra msg to log
 - `host`, target host
 - `port`, target port
 - `stream(on|off)`, use stream pipe log
@@ -32,8 +24,8 @@ a simple log pkg, send log to elasticsearch
 enter benchmark dir, then execute `$node bunyan_vs_fire.js`
 
 ```
-Fire Spend: 148148 op/s
-Bunyan Spend: 59382 op/s
+Fire Spend: 847457 op/s
+Bunyan Spend: 70521 op/s
 ```
 
 

@@ -1,14 +1,13 @@
-var Fire = require('../lib/log');
+var Fire = require('../lib/fire');
 var f = new Fire({
     host: '192.168.40.36',
-    port: 9998,
-    terminal: 'off'
+    port: 9998
 });
 
 var ops = 100000;
 var st = +new Date();
 for(var i = 0; i < ops; i++){
-    f.log(i);
+    f.send(i);
 }
 
 var time = +new Date() - st;

@@ -1,10 +1,9 @@
 var combined = require('./combined');
-var Fire = require('../lib/log');
+var Fire = require('../lib/fire');
 var f = new Fire({
     host: '192.168.40.36',
     port: 9998,
-    use_stream: true,
-    terminal: 'off'
+    use_stream: true
 });
 
-f.log('hello, this is combine!');
+f.send('hello, this is combine!');

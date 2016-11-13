@@ -1,10 +1,7 @@
-var Fire = require('../lib/log');
+var Fire = require('../lib/fire');
 var f = new Fire({
     host: '192.168.40.36',
-    port: 9998,
-    tag: 'Combined',
-    attach: 'Attach News',
-    terminal: 'on' // this is default
+    port: 9998
 });
 
-f.log('hello, this is Combined! ^.^');
+f.send('hello, this is Combined! ^.^');

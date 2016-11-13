@@ -1,6 +1,6 @@
 {
   "name": "firelog",
-  "version": "1.0.10",
+  "version": "2.0.0",
   "description": "a simple log pkg, send log to elk",
   "keywords": [
     "elk",
@@ -18,7 +18,7 @@
     "cover": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec test"
   },
   "author": "hardog",
-  "main": "./lib/log.js",
+  "main": "./lib/fire.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hardog/firelog.git"

@@ -1,6 +1,6 @@
 var net = require('net');
 var expect = require('chai').expect;
-var Fire = require('../lib/log');
+var Fire = require('../lib/fire');
 
 process.on('uncaughtException', (err) => {
     console.log(err);
@@ -8,10 +8,7 @@ process.on('uncaughtException', (err) => {
 
 describe('#fire', function(){
     var server, f, cb;
-    var opts = {
-        timeout: 10,
-        terminal: 'off'
-    };
+    var opts = {};
 
     before(function(done){
         server = net.createServer(function(sock){
@@ -24,110 +21,49 @@ describe('#fire', function(){
     });
 
     after(function(){
-        server && server.close();
         f && f.close();
+        server && server.close();
     });
 
-    it('should work when use log', function(done){
+    it('should work when send', function(done){
         f = new Fire(opts);
         cb = function(log){
-            expect(/log: terminal off/.test(log)).to.be.true;
+            expect(/log: terminal/.test(log)).to.be.true;
             done();
         };
-        f.log('log: terminal off');
-        f.log('log: terminal off, %d age', 25);
-    });
-
-    it('should work when use warn', function(done){
-        f = new Fire(opts);
-        cb = function(log){
-            expect(/warn: terminal off/.test(log)).to.be.true;
-            done();
-        };
-        f.warn('warn: terminal off');
-    });
-
-    it('should work when use error', function(done){
-        f = new Fire(opts);
-        cb = function(log){
-            expect(/error: terminal off/.test(log)).to.be.true;
-            done();
-        };
-        f.error('error: terminal off');
-    });
-
-    it('should work when use terminal:on', function(done){
-        opts.terminal = 'on';
-        f = new Fire(opts);
-        cb = function(log){
-            expect(/terminal on/.test(log)).to.be.true;
-            done();
-        };
-        f.log('terminal on');
-    });
-
-    it('should work when use tag', function(done){
-        opts.tag = 'TEST'
-        f = new Fire(opts);
-        cb = function(log){
-            expect(/Tag:TEST/.test(log)).to.be.true;
-            done();
-        };
-        f.log('use tag');
-    });
-
-    it('should work when use level({log: 3})', function(done){
-        opts.level = {log: 3};
-        f = new Fire(opts);
-        cb = function(log){
-            expect(/Level:3/.test(log)).to.be.true;
-            done();
-        };
-        f.log('use level');
-    });
-
-    it('should work when use attach', function(done){
-        opts.attach = 'NEW';
-        f = new Fire(opts);
-        cb = function(log){
-            expect(/Attach:NEW/.test(log)).to.be.true;
-            done();
-        };
-        f.log('use attach');
+        f.send('log: terminal');
     });
 
     it('should work when use stream:on', function(done){
         opts.stream = 'on';
         f = new Fire(opts);
 
-        var fire = f._fire();
-        var psend = fire.send;
-        fire.send = function(msg){
+        var psend = f.send;
+        f.send = function(msg){
             expect(this.stream).to.be.equal('on');
-            fire.send = psend;
+            f.send = psend;
             done();
         };
 
-        f.log('use stream');
+        f.send('use stream');
     });
 
     it('should work when network loss connection', function(done){
         opts.timeout = 1;
         f = new Fire(opts);
 
-        var fire = f._fire();
         setTimeout(() => {
-            fire.connected = false;
-            f.log('should queue1');
+            f.connected = false;
+            f.send('should queue1');
             setTimeout(() => {
-                expect(fire.log_queue.length).to.be.equal(1);
+                expect(f.log_queue.length).to.be.equal(1);
                 cb = function(log){
-                    expect(fire.log_queue.length).to.be.equal(0);
+                    expect(f.log_queue.length).to.be.equal(0);
                     expect(/should queue1/.test(log)).to.be.true;
                     done();
                 };
 
-                var sock = fire.socks[0];
+                var sock = f.socks[0];
                 sock.emit('connect');
             });
         }, 10);
@@ -137,10 +73,9 @@ describe('#fire', function(){
         opts.timeout = 1;
         f = new Fire(opts);
 
-        var fire = f._fire();
         setTimeout(function(){
-            var sock = fire.socks[0];
-            fire.on('ignored error', function(err){
+            var sock = f.socks[0];
+            f.on('ignored error', function(err){
                 expect(err.message).to.be.equal('test');
                 done();
             });
@@ -155,10 +90,9 @@ describe('#fire', function(){
         opts.timeout = 1;
         f = new Fire(opts);
 
-        var fire = f._fire();
         setTimeout(function(){
-            var sock = fire.socks[0];
-            fire.on('error', function(err){
+            var sock = f.socks[0];
+            f.on('error', function(err){
                 expect(err.message).to.be.equal('test1');
                 done();
             });
@@ -173,11 +107,10 @@ describe('#fire', function(){
         opts.timeout = 1;
         f = new Fire(opts);
 
-        var fire = f._fire();
         setTimeout(function(){
-            var sock = fire.socks[0];
-            fire.closing = true;
-            fire.on('close', function(){
+            var sock = f.socks[0];
+            f.closing = true;
+            f.on('close', function(){
                 done();
             });
 
@@ -189,11 +122,10 @@ describe('#fire', function(){
         opts.timeout = 1;
         f = new Fire(opts);
 
-        var fire = f._fire();
         setTimeout(function(){
-            var sock = fire.socks[0];
-            fire.closing = false;
-            fire.on('reconnect attempt', function(){
+            var sock = f.socks[0];
+            f.closing = false;
+            f.on('reconnect attempt', function(){
                 done();
             });
 
@@ -205,14 +137,25 @@ describe('#fire', function(){
         opts.timeout = 1;
         f = new Fire(opts);
 
-        var fire = f._fire();
         setTimeout(function(){
-            fire.socks = [];
-            f.log('no sock available');
+            f.socks = [];
+            f.send('no sock available');
             setTimeout(function(){
-                expect(fire.log_queue.length).to.be.equal(1);
+                expect(f.log_queue.length).to.be.equal(1);
                 done();
             });
         }, 10);
+    });
+
+    it('should destroyed sock', function(done){
+        opts.timeout = 1;
+        var f = new Fire(opts);
+
+        setTimeout(function(){
+            expect(f.socks[0].destroyed).to.be.false;
+            f.close();
+            expect(f.socks[0].destroyed).to.be.true;
+            done();
+        });
     });
 });
