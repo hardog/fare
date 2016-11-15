@@ -1,9 +1,9 @@
-# Firelog
+# Fire
 
-[![Build Status](https://travis-ci.org/hardog/firelog.svg?branch=master)](https://travis-ci.org/hardog/firelog)
-[![Coverage Status](https://img.shields.io/codecov/c/github/hardog/firelog.svg)](https://codecov.io/github/hardog/firelog?branch=master)
-[![License](https://img.shields.io/npm/l/firelog.svg)](https://www.npmjs.com/package/firelog)
-[![npm Version](https://img.shields.io/npm/v/firelog.svg)](https://www.npmjs.com/package/firelog)
+[![Build Status](https://travis-ci.org/hardog/Fire.svg?branch=master)](https://travis-ci.org/hardog/Fire)
+[![Coverage Status](https://img.shields.io/codecov/c/github/hardog/Fire.svg)](https://codecov.io/github/hardog/Fire?branch=master)
+[![License](https://img.shields.io/npm/l/Fire.svg)](https://www.npmjs.com/package/Fire)
+[![npm Version](https://img.shields.io/npm/v/Fire.svg)](https://www.npmjs.com/package/Fire)
 
 a simple log pkg, send log to elasticsearch
 
@@ -31,7 +31,7 @@ Bunyan Spend: 70521 op/s
 
 # Install
 
-`$ npm install firelog -g`
+`$ npm install Fire -g`
 
 
 # Test
@@ -52,4 +52,4 @@ See [examples](./example)
 
 # License
 
-[MIT](https://github.com/hardog/firelog/blob/master/LICENSE)
+[MIT](https://github.com/hardog/Fire/blob/master/LICENSE)

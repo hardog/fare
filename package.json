@@ -1,13 +1,14 @@
 {
-  "name": "firelog",
+  "name": "fire",
   "version": "2.0.2",
-  "description": "a simple log pkg, send log to elk",
+  "description": "a simple log pkg, send log to tcp server",
   "keywords": [
     "elk",
     "elasticsearch",
     "logstash",
     "log",
-    "firelog"
+    "tcp server",
+    "fire"
   ],
   "engines": {
     "node": ">=4.0.0"
@@ -21,12 +22,12 @@
   "main": "./lib/fire.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hardog/firelog.git"
+    "url": "git+https://github.com/hardog/fire.git"
   },
   "bugs": {
-    "url": "https://github.com/hardog/firelog/issues"
+    "url": "https://github.com/hardog/fire/issues"
   },
-  "homepage": "https://github.com/hardog/firelog",
+  "homepage": "https://github.com/hardog/fire",
   "license": "MIT",
   "dependencies": {
     "debug": "^2.3.2",
