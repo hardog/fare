@@ -1,9 +1,9 @@
-# Fire
+# Fare
 
-[![Build Status](https://travis-ci.org/hardog/Fire.svg?branch=master)](https://travis-ci.org/hardog/Fire)
-[![Coverage Status](https://img.shields.io/codecov/c/github/hardog/Fire.svg)](https://codecov.io/github/hardog/Fire?branch=master)
-[![License](https://img.shields.io/npm/l/Fire.svg)](https://www.npmjs.com/package/Fire)
-[![npm Version](https://img.shields.io/npm/v/Fire.svg)](https://www.npmjs.com/package/Fire)
+[![Build Status](https://travis-ci.org/hardog/fare.svg?branch=master)](https://travis-ci.org/hardog/fare)
+[![Coverage Status](https://img.shields.io/codecov/c/github/hardog/fare.svg)](https://codecov.io/github/hardog/fare?branch=master)
+[![License](https://img.shields.io/npm/l/fare.svg)](https://www.npmjs.com/package/fare)
+[![npm Version](https://img.shields.io/npm/v/fare.svg)](https://www.npmjs.com/package/fare)
 
 a simple log pkg, send log to elasticsearch
 
@@ -21,17 +21,17 @@ a simple log pkg, send log to elasticsearch
 
 # Benchmark
 
-enter benchmark dir, then execute `$node bunyan_vs_fire.js`
+enter benchmark dir, then execute `$node bunyan_vs_fare.js`
 
 ```
-Fire Spend: 847457 op/s
+Fare Spend: 847457 op/s
 Bunyan Spend: 70521 op/s
 ```
 
 
 # Install
 
-`$ npm install Fire -g`
+`$ npm install fare -g`
 
 
 # Test
@@ -52,4 +52,4 @@ See [examples](./example)
 
 # License
 
-[MIT](https://github.com/hardog/Fire/blob/master/LICENSE)
+[MIT](https://github.com/hardog/fare/blob/master/LICENSE)

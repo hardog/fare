@@ -1,5 +1,5 @@
 {
-  "name": "fire",
+  "name": "fare",
   "version": "2.0.2",
   "description": "a simple log pkg, send log to tcp server",
   "keywords": [
@@ -8,7 +8,7 @@
     "logstash",
     "log",
     "tcp server",
-    "fire"
+    "fare"
   ],
   "engines": {
     "node": ">=4.0.0"
@@ -22,12 +22,12 @@
   "main": "./lib/fire.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hardog/fire.git"
+    "url": "git+https://github.com/hardog/fare.git"
   },
   "bugs": {
-    "url": "https://github.com/hardog/fire/issues"
+    "url": "https://github.com/hardog/fare/issues"
   },
-  "homepage": "https://github.com/hardog/fire",
+  "homepage": "https://github.com/hardog/fare",
   "license": "MIT",
   "dependencies": {
     "debug": "^2.3.2",
