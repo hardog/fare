@@ -1,12 +1,12 @@
 var net = require('net');
 var expect = require('chai').expect;
-var Fire = require('../lib/fire');
+var Fare = require('../lib/fare');
 
 process.on('uncaughtException', (err) => {
     console.log(err);
 });
 
-describe('#fire', function(){
+describe('#fare', function(){
     var server, f, cb;
     var opts = {};
 
@@ -26,7 +26,7 @@ describe('#fire', function(){
     });
 
     it('should work when send', function(done){
-        f = new Fire(opts);
+        f = new Fare(opts);
         cb = function(log){
             expect(/log: terminal/.test(log)).to.be.true;
             done();
@@ -36,7 +36,7 @@ describe('#fire', function(){
 
     it('should work when use stream:on', function(done){
         opts.stream = 'on';
-        f = new Fire(opts);
+        f = new Fare(opts);
 
         var psend = f.send;
         f.send = function(msg){
@@ -50,7 +50,7 @@ describe('#fire', function(){
 
     it('should work when network loss connection', function(done){
         opts.timeout = 1;
-        f = new Fire(opts);
+        f = new Fare(opts);
 
         setTimeout(() => {
             f.connected = false;
@@ -71,7 +71,7 @@ describe('#fire', function(){
 
     it('should emit ignore when exist err code (ECONNREFUSED)', function(done){
         opts.timeout = 1;
-        f = new Fire(opts);
+        f = new Fare(opts);
 
         setTimeout(function(){
             var sock = f.socks[0];
@@ -88,7 +88,7 @@ describe('#fire', function(){
 
     it('should emit error when not exist err code (NOT-EXIST-CODE)', function(done){
         opts.timeout = 1;
-        f = new Fire(opts);
+        f = new Fare(opts);
 
         setTimeout(function(){
             var sock = f.socks[0];
@@ -105,7 +105,7 @@ describe('#fire', function(){
 
     it('should listen close when emit close', function(done){
         opts.timeout = 1;
-        f = new Fire(opts);
+        f = new Fare(opts);
 
         setTimeout(function(){
             var sock = f.socks[0];
@@ -120,7 +120,7 @@ describe('#fire', function(){
 
     it('should retry when emit close', function(done){
         opts.timeout = 1;
-        f = new Fire(opts);
+        f = new Fare(opts);
 
         setTimeout(function(){
             var sock = f.socks[0];
@@ -135,7 +135,7 @@ describe('#fire', function(){
 
     it('should log queue when no sock', function(done){
         opts.timeout = 1;
-        f = new Fire(opts);
+        f = new Fare(opts);
 
         setTimeout(function(){
             f.socks = [];
@@ -149,13 +149,13 @@ describe('#fire', function(){
 
     it('should destroyed sock', function(done){
         opts.timeout = 1;
-        var f = new Fire(opts);
+        var f = new Fare(opts);
 
         setTimeout(function(){
             expect(f.socks[0].destroyed).to.be.false;
             f.close();
             expect(f.socks[0].destroyed).to.be.true;
             done();
-        });
+        }, 2);
     });
 });

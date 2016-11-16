@@ -1,6 +1,6 @@
 {
   "name": "fare",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "a simple log pkg, send log to tcp server",
   "keywords": [
     "elk",
@@ -19,7 +19,7 @@
     "cover": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec test"
   },
   "author": "hardog",
-  "main": "./lib/fire.js",
+  "main": "./lib/fare.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hardog/fare.git"

@@ -1,4 +1,4 @@
-var Fire = require('../lib/fire');
+var Fire = require('../lib/fare');
 var f = new Fire({
     host: '192.168.40.36',
     port: 9998
