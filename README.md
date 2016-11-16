@@ -24,8 +24,11 @@ a simple log pkg, send log to elasticsearch
 enter benchmark dir, then execute `$node bunyan_vs_fare.js`
 
 ```
-Fare Spend: 1811266 op/s
-Bunyan Spend: 70521 op/s
+// virtual box centos7 
+// 1C1G
+// 100000ops
+Fare Spend: 320512 op/s
+Bunyan Spend: 19428 op/s
 ```
 
 
