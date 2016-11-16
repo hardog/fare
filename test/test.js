@@ -3,12 +3,11 @@ var expect = require('chai').expect;
 var Fare = require('../lib/fare');
 
 process.on('uncaughtException', (err) => {
-    console.log(err);
+    console.log('GLOBAL:', err);
 });
 
 describe('#fare', function(){
-    var server, f, cb;
-    var opts = {};
+    var server, cb;
 
     before(function(done){
         server = net.createServer(function(sock){
@@ -21,12 +20,11 @@ describe('#fare', function(){
     });
 
     after(function(){
-        f && f.close();
         server && server.close();
     });
 
     it('should work when send', function(done){
-        f = new Fare(opts);
+        var f = new Fare();
         cb = function(log){
             expect(/log: terminal/.test(log)).to.be.true;
             done();
@@ -35,8 +33,8 @@ describe('#fare', function(){
     });
 
     it('should work when use stream:on', function(done){
-        opts.stream = 'on';
-        f = new Fare(opts);
+        var opts = {stream: 'on'};
+        var f = new Fare(opts);
 
         var psend = f.send;
         f.send = function(msg){
@@ -48,30 +46,40 @@ describe('#fare', function(){
         f.send('use stream');
     });
 
+    it('should work when use pipe to sock stream', function(done){
+        var opts = {stream: 'on'};
+        var f = new Fare(opts);
+
+        setTimeout(function(){
+            var sock = f.socks[0];
+            cb = function(data){};
+            sock.on('pipe', function(chunk){
+                done();
+            });
+            f.send('use stream');
+        }, 10);
+    });
+
     it('should work when network loss connection', function(done){
-        opts.timeout = 1;
-        f = new Fare(opts);
+        var f = new Fare();
 
         setTimeout(() => {
             f.connected = false;
             f.send('should queue1');
-            setTimeout(() => {
-                expect(f.log_queue.length).to.be.equal(1);
-                cb = function(log){
-                    expect(f.log_queue.length).to.be.equal(0);
-                    expect(/should queue1/.test(log)).to.be.true;
-                    done();
-                };
+            expect(f.log_queue.length).to.be.equal(1);
+            cb = function(log){
+                expect(f.log_queue.length).to.be.equal(0);
+                expect(/should queue1/.test(log)).to.be.true;
+                done();
+            };
 
-                var sock = f.socks[0];
-                sock.emit('connect');
-            });
+            var sock = f.socks[0];
+            sock.emit('connect');
         }, 10);
     });
 
     it('should emit ignore when exist err code (ECONNREFUSED)', function(done){
-        opts.timeout = 1;
-        f = new Fare(opts);
+        var f = new Fare();
 
         setTimeout(function(){
             var sock = f.socks[0];
@@ -87,8 +95,7 @@ describe('#fare', function(){
     });
 
     it('should emit error when not exist err code (NOT-EXIST-CODE)', function(done){
-        opts.timeout = 1;
-        f = new Fare(opts);
+        var f = new Fare();
 
         setTimeout(function(){
             var sock = f.socks[0];
@@ -104,8 +111,7 @@ describe('#fare', function(){
     });
 
     it('should listen close when emit close', function(done){
-        opts.timeout = 1;
-        f = new Fare(opts);
+        var f = new Fare();
 
         setTimeout(function(){
             var sock = f.socks[0];
@@ -115,12 +121,11 @@ describe('#fare', function(){
             });
 
             sock.emit('close');
-        }, 10);
+        }, 2);
     });
 
     it('should retry when emit close', function(done){
-        opts.timeout = 1;
-        f = new Fare(opts);
+        var f = new Fare();
 
         setTimeout(function(){
             var sock = f.socks[0];
@@ -130,26 +135,38 @@ describe('#fare', function(){
             });
 
             sock.emit('close');
-        }, 10);
+        }, 2);
     });
 
     it('should log queue when no sock', function(done){
-        opts.timeout = 1;
-        f = new Fare(opts);
+        var f = new Fare();
 
         setTimeout(function(){
             f.socks = [];
             f.send('no sock available');
-            setTimeout(function(){
-                expect(f.log_queue.length).to.be.equal(1);
-                done();
-            });
-        }, 10);
+            expect(f.log_queue.length).to.be.equal(1);
+            done();
+        }, 2);
+    });
+
+    it('should drop msg when large than buf_size', function(done){
+        var opts = {buf_size: 2};
+        var f = new Fare(opts);
+        f.on('drop', function(msg){
+            expect(msg).to.be.equal('drop 3');
+            done();
+        });
+
+        setTimeout(function(){
+            f.socks = [];
+            f.send('no sock 1');
+            f.send('no sock 2');
+            f.send('drop 3');
+        }, 2);
     });
 
     it('should destroyed sock', function(done){
-        opts.timeout = 1;
-        var f = new Fare(opts);
+        var f = new Fare();
 
         setTimeout(function(){
             expect(f.socks[0].destroyed).to.be.false;
