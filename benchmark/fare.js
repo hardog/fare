@@ -4,7 +4,7 @@ var f = new Fire({
     port: 9998
 });
 
-var ops = 100000;
+var ops = 10000000;
 var st = +new Date();
 for(var i = 0; i < ops; i++){
     f.send(i);

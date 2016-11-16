@@ -1,7 +1,7 @@
 var logstash = require('./console');
 logstash.createLogger({'level': 'info'});
 
-var ops = 100000;
+var ops = 10000000;
 var st = +new Date();
 for(var i = 0; i < ops; i++){
     console.log(i);

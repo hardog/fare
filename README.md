@@ -24,7 +24,7 @@ a simple log pkg, send log to elasticsearch
 enter benchmark dir, then execute `$node bunyan_vs_fare.js`
 
 ```
-Fare Spend: 847457 op/s
+Fare Spend: 1811266 op/s
 Bunyan Spend: 70521 op/s
 ```
 
