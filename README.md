@@ -27,8 +27,7 @@ enter benchmark dir, then execute `$node bunyan_vs_fare.js`
 // virtual box centos7 
 // 1C1G
 // 100000ops
-Fare Spend: 320512 op/s
-Bunyan Spend: 19428 op/s
+WTODO
 ```
 
 
