@@ -23,7 +23,6 @@ server = net.createServer(function(sock){
             var mc = process.memoryUsage();
             console.log(mc.rss, mc.heapTotal, mc.heapUsed);
             prev = undefined;
-            n = 0;
         }
     });
 });
